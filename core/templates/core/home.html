@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plot | Systems Architecture for Landscaping</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container container">
+            <div class="navbar__logo">
+                <span class="material-symbols-outlined">hub</span>
+                <span class="navbar__logo-text font-serif">Plot.</span>
+            </div>
+            <div class="navbar__menu">
+                <a class="navbar__link" href="#approach">Methodology</a>
+                <a class="navbar__link" href="#platform">The OS</a>
+                <a href="#pilot" class="btn btn--primary">REQUEST AUDIT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero__container container">
+            <div class="hero__content">
+                <div class="hero__badge">
+                    Systems Architecture & Design
+                </div>
+                <h1 class="hero__title font-serif">
+                    Enterprise efficiency for the modern landscape.
+                </h1>
+                <p class="hero__description">
+                    We don't just build websites. We install an <strong>Operational Operating System</strong> that optimizes your margins, workflows, and client retention.
+                </p>
+                <div class="hero__actions">
+                    <a href="#platform" class="btn btn--primary">View The Architecture</a>
+                </div>
+            </div>
+
+            <div class="hero__visual" style="position: relative;">
+                <div class="badge-floating">
+                    <p class="flow-label">Background</p>
+                    <p class="font-serif italic" style="font-size: 0.9rem; color: var(--color-primary);">Built by Fintech & LegalTech Product Managers.</p>
+                </div>
+
+                <div class="plot-card">
+                    <div class="plot-card__header">
+                        <div class="font-serif italic" style="color: var(--color-primary);">Workflow Automation</div>
+                        <span class="material-symbols-outlined" style="color: var(--color-accent);">sync_alt</span>
+                    </div>
+                    <div class="plot-card__flow">
+                        <div class="flow-step">
+                            <span class="flow-label">Step 1</span>
+                            Ingest: Handwriting OCR
+                        </div>
+                        <div class="flow-step">
+                            <span class="flow-label">Step 2</span>
+                            Process: Margin Calc
+                        </div>
+                        <div class="flow-step flow-step--active">
+                            <span class="flow-label">Step 3</span>
+                            Output: Profit & Billing
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology (Approach) Section -->
+    <section class="approach" id="approach">
+        <div class="container">
+            <div class="approach__grid">
+                <div>
+                    <span class="section-label">The Philosophy</span>
+                    <h2 class="section-title font-serif">
+                        Run your garden service like a tech company.
+                    </h2>
+                    <p style="margin-bottom: 1.5rem; color: var(--color-text-light);">
+                        In Fintech, a lost decimal point is a crisis. In Landscaping, a lost job card is "business as usual." We disagree.
+                    </p>
+                    <p style="margin-bottom: 2rem; color: var(--color-text-light);">
+                        We bring <strong>Systems Thinking</strong> to the garden. We identify bottlenecks, automate the grunt work, and give you the data visibility usually reserved for Fortune 500 companies.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <span class="btn btn--outline" style="font-size: 0.7rem; padding: 0.5rem 1rem;">Process First</span>
+                        <span class="btn btn--outline" style="font-size: 0.7rem; padding: 0.5rem 1rem;">Data Driven</span>
+                    </div>
+                </div>
+                <div class="approach__stats">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined stat-card__icon">analytics</span>
+                        <span class="stat-card__label">80% Admin Reduction</span>
+                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Reclaim your Mondays.</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined stat-card__icon">payments</span>
+                        <span class="stat-card__label">100% Billable Capture</span>
+                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Stop leaking profit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation (Partnership) Section -->
+    <section class="partnership" id="partnership">
+        <div class="container">
+            <span class="section-label">The Transformation</span>
+            <h2 class="section-title font-serif">We build the engine. <span>You keep the profit.</span></h2>
+            
+            <div class="partnership__cards">
+                <div class="service-card">
+                    <div class="service-card__number font-serif">01</div>
+                    <h3 class="service-card__title font-serif">The Core OS</h3>
+                    <p style="color: var(--color-text-light);">Implementation of Harvester. AI handwriting recognition, margin analysis, and logistics planning.</p>
+                    <ul class="service-card__list">
+                        <li>Automate Invoicing</li>
+                        <li>Digitise Archives</li>
+                    </ul>
+                </div>
+                <div class="service-card service-card--highlight">
+                    <div class="service-card__number font-serif">02</div>
+                    <h3 class="service-card__title font-serif">The Digital Interface</h3>
+                    <p style="color: var(--color-text-light);">A bespoke company website that acts as a secure Client Portal. Your brand, modernized.</p>
+                    <ul class="service-card__list">
+                        <li>Brand Modernization</li>
+                        <li>Secure Client Access</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="platform" id="platform">
+        <div class="container">
+            <div class="platform__grid">
+                <div class="app-mockup">
+                    <div class="app-mockup__screen">
+                        <div class="feature-row">
+                            <h4 class="feature-title font-serif">AI Handwriting Engine</h4>
+                            <p style="font-size: 0.9rem; color: var(--color-text-light);">Snap one photo, and our Vision AI reads the handwriting and digitizes it instantly.</p>
+                        </div>
+                        <div class="feature-row">
+                            <h4 class="feature-title font-serif">"Magic Link" Portal</h4>
+                            <p style="font-size: 0.9rem; color: var(--color-text-light);">Clients receive a branded email with a secure link to visit summaries.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="section-label">Capabilities</span>
+                    <h2 class="section-title font-serif">Seamless Horticultural Tech</h2>
+                    <p style="color: var(--color-text-light); margin-bottom: 2rem;">
+                        Our system bridges the gap between the field and the office, ensuring no data is lost and every job is accounted for.
+                    </p>
+                    <a href="#pilot" class="btn btn--primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="pilot">
+        <div class="container cta__container">
+            <div>
+                <h2 class="section-title font-serif" style="color: var(--color-primary);">Optimize your operations.</h2>
+                <p style="margin-bottom: 2rem; color: var(--color-text-light);">
+                    We are currently accepting three new landscaping partners for this quarter. Let's discuss how we can streamline your business.
+                </p>
+            </div>
+            <div class="contact-card" id="inquiry-form-container">
+                <form hx-post="{% url 'submit_inquiry' %}" hx-target="#inquiry-form-container" hx-swap="outerHTML">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" id="company_name" name="company_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help?</label>
+                        <textarea id="message" name="message" rows="4" style="width: 100%; padding: 1rem; border: 1px solid var(--color-highlight); border-radius: var(--radius-sm); background: var(--color-bg);"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Request Strategy Call</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <div class="navbar__logo" style="margin-bottom: 1rem;">
+                        <span class="material-symbols-outlined">hub</span>
+                        <span class="navbar__logo-text font-serif">Plot.</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-text-light);">
+                        © 2026 Plot Architecture. All rights reserved.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#approach" class="navbar__link">Methodology</a>
+                    <a href="#platform" class="navbar__link">The OS</a>
+                    <a href="#" class="navbar__link">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
