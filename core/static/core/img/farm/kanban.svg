@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#f7f4ec"/>
+  <rect width="1600" height="64" fill="#ffffff"/>
+  <circle cx="44" cy="32" r="9" fill="#e6e1d5"/>
+  <circle cx="76" cy="32" r="9" fill="#e6e1d5"/>
+  <circle cx="108" cy="32" r="9" fill="#e6e1d5"/>
+  <rect x="120" y="16" width="640" height="32" rx="6" fill="#efeae0"/>
+  <text x="136" y="37" font-family="Arial, sans-serif" font-size="16" fill="#8a8a8a">plot.org.za / farm</text>
+
+  <rect x="80" y="112" width="1440" height="760" rx="18" fill="none" stroke="#2d5a27" stroke-width="3" stroke-dasharray="18 14"/>
+  <text x="800" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="88" font-style="italic" fill="#2d5a27">FARM</text>
+  <text x="800" y="486" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#3a3a3a">Kanban Board</text>
+  <line x1="640" y1="540" x2="960" y2="540" stroke="#c5a059" stroke-width="2"/>
+  <text x="800" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" letter-spacing="6" fill="#c5a059">SCREENSHOT PLACEHOLDER</text>
+
+  <text x="800" y="800" text-anchor="middle" font-family="Consolas, monospace" font-size="24" fill="#8a8a8a">Paste: core/static/core/img/farm/kanban.png</text>
+  <text x="800" y="842" text-anchor="middle" font-family="Consolas, monospace" font-size="24" fill="#8a8a8a">1600 &#215; 1000 &#183; PNG or WebP</text>
+</svg>
