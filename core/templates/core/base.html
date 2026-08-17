@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Plot | Systems Architecture for Landscaping{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container container">
+            <div class="navbar__logo">
+                <span class="material-symbols-outlined">hub</span>
+                <span class="navbar__logo-text font-serif">Plot.</span>
+            </div>
+            <div class="navbar__menu">
+                <a class="navbar__link" href="/#methodology">Methodology</a>
+                <a class="navbar__link" href="/#work">Work</a>
+                <a class="navbar__link" href="/#contact">Contact</a>
+                <a href="/#contact" class="btn btn--primary">START A PROJECT</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <div class="navbar__logo" style="margin-bottom: 1rem;">
+                        <span class="material-symbols-outlined">hub</span>
+                        <span class="navbar__logo-text font-serif">Plot.</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-text-light);">
+                        © 2026 Plot Architecture. All rights reserved.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="/#work" class="navbar__link">Work</a>
+                    <a href="/#contact" class="navbar__link">Contact</a>
+                    <a href="#" class="navbar__link">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
