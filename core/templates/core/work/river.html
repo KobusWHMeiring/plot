@@ -1,1 +1,124 @@
-<h1>River</h1>
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}River — Plot{% endblock %}
+
+{% block content %}
+    <header class="work-hero">
+        <div class="container">
+            <span class="section-label">Case Study</span>
+            <h1 class="work-title font-serif">River</h1>
+            <p class="work-lede">Field-operations system for river rehabilitation.</p>
+            <p class="work-tagline">A field team planned river rehabilitation on paper — litter collection, weeding, planting and admin across many river sections — with no single view of who did what, where, or the cumulative impact. I built a Django platform that turns the whole operation into a planned, tracked, measurable workflow.</p>
+            <p class="stack-line">Django 6 · Python · PostgreSQL · Leaflet · vanilla JS — in active production use.</p>
+        </div>
+    </header>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">The problem</h2>
+            <p class="work-paragraph">Rehabilitation of the Liesbeek River is coordinated by a small field team running litter collection, weeding, planting, and administrative work across many river sections. Work was planned on paper; there was no single source of truth for who did what, where, or what the cumulative impact had been. Managers couldn't see progress, and reporting was manual.</p>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">The solution</h2>
+            <p class="work-paragraph">A purpose-built web platform that turns river rehabilitation into a planned, tracked, and measurable operation — from "which section do we work today" to "how many bags have we pulled out of the river this year".</p>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">What it does</h2>
+            <div class="capabilities">
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">map</span> GIS section mapping</h4>
+                    <p>Interactive Leaflet map with polygon drawing. Each section holds a GeoJSON boundary and centre point; map hover syncs with the section list. Sections move through lifecycle stages — Mitigation → Clearing → Planting → Follow-up → Community.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">calendar_today</span> Planning suite</h4>
+                    <p>Weekly planner (7-day, split by Team / Manager / Chairperson), monthly calendar, and a daily agenda with tick-to-complete. 19 real-world task templates auto-populate instructions, and tasks can span multiple days via series.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">edit_note</span> Context-aware visit logging</h4>
+                    <p>Smart forms that adapt to the task type: litter runs capture general + recyclable bag counts; weeding captures species-specific removals with quantities; planting captures species-specific counts; admin stays clean. Notes auto-fill from the task, and photos attach with descriptions.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">analytics</span> Impact dashboards</h4>
+                    <p>Global metrics — total bags collected, plants planted, weeding sessions — plus cross-section comparisons, recent activity, and drill-down into each metric's source logs.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">timeline</span> Stage tracking</h4>
+                    <p>Timestamped lifecycle history per section, with a timeline view of rehabilitation progress.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">view_kanban</span> Team to-do (Kanban)</h4>
+                    <p>Drag-and-drop rolling to-do board (To Do / Doing / Done) with position re-indexing.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">download</span> Excel export</h4>
+                    <p>Multi-sheet workbook export (sections, tasks, visit logs), plus planner and filtered activity-log exports.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">smartphone</span> Mobile responsive</h4>
+                    <p>Every view adapts to mobile — including Kanban drag-and-drop and form controls — so it works on a phone at the river.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">In the field</h2>
+            <div class="case-screenshots">
+                <img class="case-screenshot" src="{% static 'core/img/river/dashboard.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/river/dashboard.svg' %}'" alt="River impact dashboard — bags collected and plants planted">
+                <img class="case-screenshot" src="{% static 'core/img/river/map.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/river/map.svg' %}'" alt="River GIS section map with lifecycle stages">
+                <img class="case-screenshot" src="{% static 'core/img/river/visit-log.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/river/visit-log.svg' %}'" alt="River visit log form">
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">How it's built</h2>
+            <ul class="rigor-list">
+                <li><strong>Service-layer architecture</strong> — business logic lives in <code>services/</code>, not in views or models; views only route and prepare context.</li>
+                <li><strong>Performance budgets</strong> — <code>bulk_create</code>/<code>bulk_update</code> over save-in-a-loop, <code>select_related()</code> on every list view to kill N+1 queries, and <code>.values()</code>/<code>.only()</code> for read-only rendering — enforced with automated N+1 growth tests.</li>
+                <li><strong>Observability</strong> — structured logging and Sentry error monitoring.</li>
+                <li><strong>Architecture Decision Records</strong> — major data-flow and library changes are documented.</li>
+                <li><strong>Testing</strong> — 20+ unit/integration test files covering planners, dashboards, Kanban, task completion, form errors, exports and search, plus a per-feature UAT checklist process.</li>
+                <li><strong>Deployment</strong> — Nginx + systemd + PostgreSQL, a one-command deploy script, and a production-DB sync command for safe local debugging.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">Outcomes</h2>
+            <ul class="outcome-list">
+                <li>In active production use by a real field-operations team.</li>
+                <li>Shipped with 19 real-world task templates and 8 river sections across 4 task types — litter run, weeding, planting, admin.</li>
+                <li>Supports multi-day task series and three assignee roles.</li>
+                <li>Production feedback captured and folded back into the backlog — a real user loop, not a demo.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="work-cta">
+        <div class="container">
+            <h2 class="section-title font-serif">Roles & stack</h2>
+            <p class="work-paragraph">Team, Manager, and Chairperson assignee types, each with their own planner rows.</p>
+            <p class="stack-line">Django 6 · Python · PostgreSQL (production) / SQLite (dev) · Django templates · Leaflet.js · vanilla JavaScript · Sentry.</p>
+            <div class="work-actions">
+                <a href="/#contact" class="btn btn--primary">Start a project</a>
+            </div>
+            <nav class="work-nav" aria-label="More case studies">
+                <span class="work-nav__label">More work</span>
+                {% for p in projects %}
+                    <a href="{% url 'work_detail' p.slug %}" class="btn btn--outline">{{ p.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </section>
+{% endblock %}
