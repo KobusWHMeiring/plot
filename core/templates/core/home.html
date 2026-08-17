@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block content %}
     <!-- Hero Section -->
@@ -6,37 +7,37 @@
         <div class="hero__container container">
             <div class="hero__content">
                 <div class="hero__badge">
-                    Systems Architecture & Design
+                    Operational software for land-based organisations
                 </div>
                 <h1 class="hero__title font-serif">
-                    Enterprise efficiency for the modern landscape.
+                    I don't just build websites. I build the <span style="font-style: italic; color: var(--color-accent);">operating system for people who work the land.</span>
                 </h1>
                 <p class="hero__description">
-                    We don't just build websites. We install an <strong>Operational Operating System</strong> that optimizes your margins, workflows, and client retention.
+                    Planning, mapping, field data, finances, and reporting — for agriculture, conservation, and landscaping.
                 </p>
                 <div class="hero__actions">
-                    <a href="#platform" class="btn btn--primary">View The Architecture</a>
+                    <a href="#work" class="btn btn--primary">See the work</a>
                 </div>
             </div>
 
             <div class="hero__visual" style="position: relative;">
                 <div class="plot-card">
                     <div class="plot-card__header">
-                        <div class="font-serif italic" style="color: var(--color-primary);">Workflow Automation</div>
+                        <div class="font-serif italic" style="color: var(--color-primary);">Field Workflow</div>
                         <span class="material-symbols-outlined" style="color: var(--color-accent);">sync_alt</span>
                     </div>
                     <div class="plot-card__flow">
                         <div class="flow-step">
                             <span class="flow-label">Step 1</span>
-                            Capture: Handwritten or Digital Visit Data
+                            Capture: field data, photos & paper
                         </div>
                         <div class="flow-step">
                             <span class="flow-label">Step 2</span>
-                            Organize: Automated Data Digitization
+                            Organize: planning, mapping & logging
                         </div>
                         <div class="flow-step flow-step--active">
                             <span class="flow-label">Step 3</span>
-                            Analyze: Planning, Costing & Logistics
+                            Analyze: finances, impact & reporting
                         </div>
                     </div>
                 </div>
@@ -44,115 +45,113 @@
         </div>
     </section>
 
-    <!-- Methodology (Approach) Section -->
+    <!-- Methodology Section -->
     <section class="approach" id="methodology">
         <div class="container">
             <div class="approach__grid">
                 <div>
                     <span class="section-label">The Philosophy</span>
                     <h2 class="section-title font-serif">
-                        Run your garden service like a tech company.
+                        Run your field operation like a <span style="font-style: italic;">tech company.</span>
                     </h2>
                     <p style="margin-bottom: 1.5rem; color: var(--color-text-light);">
-                        In Fintech, a lost decimal point is a crisis. In Landscaping, a lost job card is "business as usual." We disagree.
+                        In fintech, a lost decimal point is a crisis. On the land, a lost job card is "business as usual." I disagree.
                     </p>
                     <p style="margin-bottom: 2rem; color: var(--color-text-light);">
-                        We bring <strong>Systems Thinking</strong> to the garden. We identify bottlenecks, automate the grunt work, and give you the data visibility usually reserved for Fortune 500 companies.
+                        I bring <strong>systems thinking</strong> to the field — find the bottleneck, automate the grunt work, and surface the numbers usually reserved for companies with a whole operations team.
                     </p>
                     <div style="display: flex; gap: 1rem;">
                         <span class="btn btn--outline" style="font-size: 0.7rem; padding: 0.5rem 1rem;">Process First</span>
                         <span class="btn btn--outline" style="font-size: 0.7rem; padding: 0.5rem 1rem;">Data Driven</span>
                     </div>
                 </div>
-                <div class="approach__stats">
+                <div class="approach__stats" style="grid-template-columns: 1fr 1fr;">
                     <div class="stat-card">
-                        <span class="material-symbols-outlined stat-card__icon">analytics</span>
-                        <span class="stat-card__label">80% Admin Reduction</span>
-                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Reclaim your Mondays.</p>
+                        <span class="material-symbols-outlined stat-card__icon">apps</span>
+                        <span class="stat-card__label">3 production systems</span>
+                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Agriculture, conservation & landscaping.</p>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined stat-card__icon">payments</span>
-                        <span class="stat-card__label">100% Billable Capture</span>
-                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Stop leaking profit.</p>
+                        <span class="material-symbols-outlined stat-card__icon">edit_note</span>
+                        <span class="stat-card__label">19 field templates</span>
+                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Real task templates, in production.</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined stat-card__icon">account_balance</span>
+                        <span class="stat-card__label">~40 ledger accounts</span>
+                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Double-entry farm finance.</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined stat-card__icon">fact_check</span>
+                        <span class="stat-card__label">456 automated tests</span>
+                        <p style="font-size: 0.8rem; color: var(--color-text-light);">Across the shipped systems.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Transformation (Partnership) Section -->
-    <section class="partnership" id="partnership">
+    <!-- Work Carousel Section -->
+    <section class="work-carousel" id="work">
         <div class="container">
-            <span class="section-label">The Transformation</span>
-            <h2 class="section-title font-serif">We build the engine. <span>You keep the profit.</span></h2>
-
-            <div class="partnership__cards">
-                <div class="service-card">
-                    <div class="service-card__number font-serif">01</div>
-                    <h3 class="service-card__title font-serif">The Core OS</h3>
-                    <p style="color: var(--color-text-light);">Implementation of Harvester. AI handwriting recognition, margin analysis, and logistics planning.</p>
-                    <ul class="service-card__list">
-                        <li>Automate Invoicing & Payroll</li>
-                        <li>Digitise Historical Archives</li>
-                        <li>Smart Nursery Shopping Lists</li>
-                    </ul>
-                </div>
-                <div class="service-card service-card--highlight">
-                    <div class="service-card__number font-serif">02</div>
-                    <h3 class="service-card__title font-serif">The Intelligence Stack</h3>
-                    <p style="color: var(--color-text-light);">A suite of spatial and agronomic tools that turn field data into executive-level insights.</p>
-                    <ul class="service-card__list">
-                        <li>Mapping & Route Optimization</li>
-                        <li>Crop Lifecycle (Gantt) Tracking</li>
-                        <li>Actual-vs-Budget Job Costing</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Platform Section -->
-    <section class="platform" id="platform">
-        <div class="container">
-            <div class="platform__grid">
-                <div class="app-mockup">
-                    <div class="app-mockup__screen">
-                        <div class="feature-row">
-                            <h4 class="feature-title font-serif"><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">psychology</span> AI Extraction</h4>
-                            <p style="font-size: 0.9rem; color: var(--color-text-light);">Vision AI reads handwritten job cards and digitizes inputs, plantings, and tasks instantly.</p>
-                        </div>
-                        <div class="feature-row">
-                            <h4 class="feature-title font-serif"><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">map</span> Spatial Intelligence</h4>
-                            <p style="font-size: 0.9rem; color: var(--color-text-light);">Comprehensive interactive mapping and manual pin-dropping for precise farm logistics.</p>
-                        </div>
-                        <div class="feature-row">
-                            <h4 class="feature-title font-serif"><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">calendar_today</span> GCal Integration</h4>
-                            <p style="font-size: 0.9rem; color: var(--color-text-light);">14-day rolling sync between your Google Calendar and operational prep sheets.</p>
-                        </div>
-                        <div class="feature-row">
-                            <h4 class="feature-title font-serif"><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">timeline</span> Agronomic Gantt</h4>
-                            <p style="font-size: 0.9rem; color: var(--color-text-light);">Project crop lifecycles with biological data (DTM) to visualize the "Active Garden" state.</p>
-                        </div>
+            <span class="section-label">The Work</span>
+            <h2 class="section-title font-serif">Three production systems</h2>
+            <div class="carousel">
+                <div class="carousel__viewport">
+                    <div class="carousel__track">
+                        <section class="carousel__slide" aria-label="Harvester">
+                            <div class="service-card">
+                                <div class="service-card__number font-serif">01</div>
+                                <h3 class="service-card__title font-serif">Harvester</h3>
+                                <p class="service-card__tagline">Urban garden & landscaping operations</p>
+                                <p class="service-card__pitch">A landscaping team's day lived on paper job cards — lost, wet, or stuck in the van — so billables leaked and clients were left in the dark. I built a platform that turns a photo of the form into verified, billable, client-ready data.</p>
+                                <ul class="service-card__list service-card__list--icons">
+                                    <li><span class="material-symbols-outlined">document_scanner</span> AI handwriting extraction</li>
+                                    <li><span class="material-symbols-outlined">mark_email_read</span> Magic-Link client portal</li>
+                                    <li><span class="material-symbols-outlined">analytics</span> Margin & job costing</li>
+                                    <li><span class="material-symbols-outlined">map</span> Mapping & scheduling</li>
+                                </ul>
+                                <p class="service-card__stack">Django · Python · Celery + Redis · Gemini Vision · Leaflet</p>
+                                <a class="btn btn--outline" href="{% url 'work_detail' 'harvester' %}">Read the full case study</a>
+                            </div>
+                        </section>
+                        <section class="carousel__slide" aria-label="River">
+                            <div class="service-card">
+                                <div class="service-card__number font-serif">02</div>
+                                <h3 class="service-card__title font-serif">River</h3>
+                                <p class="service-card__tagline">Field-operations system for river rehabilitation</p>
+                                <p class="service-card__pitch">A field team planned river rehabilitation on paper, with no single view of who did what, where, or the cumulative impact. I built a Django platform that turns the whole operation into a planned, tracked, measurable workflow.</p>
+                                <ul class="service-card__list service-card__list--icons">
+                                    <li><span class="material-symbols-outlined">map</span> GIS mapping with lifecycle stages</li>
+                                    <li><span class="material-symbols-outlined">calendar_today</span> Weekly / monthly / daily planners</li>
+                                    <li><span class="material-symbols-outlined">edit_note</span> Smart visit logging & photos</li>
+                                    <li><span class="material-symbols-outlined">analytics</span> Impact dashboards & Excel export</li>
+                                </ul>
+                                <p class="service-card__stack">Django · Python · PostgreSQL · Leaflet · vanilla JS</p>
+                                <a class="btn btn--outline" href="{% url 'work_detail' 'river' %}">Read the full case study</a>
+                            </div>
+                        </section>
+                        <section class="carousel__slide" aria-label="Farm">
+                            <div class="service-card">
+                                <div class="service-card__number font-serif">03</div>
+                                <h3 class="service-card__title font-serif">Farm</h3>
+                                <p class="service-card__tagline">Farm management for a regenerative farm</p>
+                                <p class="service-card__pitch">A regenerative farm's operational knowledge lived on paper lists, WhatsApp chats, and in people's memories. I built a local-first platform that tracks the work, the money, and the land — offline and on the farm's own hardware.</p>
+                                <ul class="service-card__list service-card__list--icons">
+                                    <li><span class="material-symbols-outlined">account_balance</span> Double-entry finance & reconciliation</li>
+                                    <li><span class="material-symbols-outlined">agriculture</span> Cattle grazing & paddock rest</li>
+                                    <li><span class="material-symbols-outlined">flight</span> Drone mapping</li>
+                                    <li><span class="material-symbols-outlined">view_kanban</span> Team todo, routines & offline logging</li>
+                                </ul>
+                                <p class="service-card__stack">Django · Python · PostgreSQL · HTMX · Leaflet</p>
+                                <a class="btn btn--outline" href="{% url 'work_detail' 'farm' %}">Read the full case study</a>
+                            </div>
+                        </section>
                     </div>
                 </div>
-                <div>
-                    <span class="section-label">Capabilities</span>
-                    <h2 class="section-title font-serif">The Future of Horticulture</h2>
-                    <p style="color: var(--color-text-light); margin-bottom: 2rem;">
-                        Our system bridges the gap between the field and the office. From <strong>Infrastructure Alerts</strong> to <strong>"Magic Link" Client Portals</strong>, we ensure no job is lost and every margin is protected.
-                    </p>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
-                        <div style="padding: 1rem; background: var(--color-highlight); border-radius: var(--radius-sm);">
-                            <h5 class="font-serif" style="color: var(--color-primary); margin-bottom: 0.25rem;">Client Portal</h5>
-                            <p style="font-size: 0.75rem;">Token-signed links for ratings and wishlists.</p>
-                        </div>
-                        <div style="padding: 1rem; background: var(--color-highlight); border-radius: var(--radius-sm);">
-                            <h5 class="font-serif" style="color: var(--color-primary); margin-bottom: 0.25rem;">Job Costing</h5>
-                            <p style="font-size: 0.75rem;">Fee normalization and direct material allocation.</p>
-                        </div>
-                    </div>
-                    <a href="#pilot" class="btn btn--primary">Request Architecture Audit</a>
-                </div>
+                <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">‹</button>
+                <button class="carousel__arrow carousel__arrow--next" aria-label="Next">›</button>
+                <div class="carousel__dots"></div>
             </div>
         </div>
     </section>
@@ -161,9 +160,9 @@
     <section class="cta" id="contact">
         <div class="container cta__container">
             <div>
-                <h2 class="section-title font-serif">Optimize your operations.</h2>
+                <h2 class="section-title font-serif">Let's build yours.</h2>
                 <p style="margin-bottom: 2rem;">
-                    We are currently accepting three new landscaping partners for this quarter. Let's discuss how we can streamline your business.
+                    I'm currently taking on a small number of new projects. If you run a team that works the land, let's talk about how your operation could run itself.
                 </p>
             </div>
             <div class="contact-card" id="inquiry-form-container">
@@ -182,12 +181,16 @@
                         <input type="text" id="company_name" name="company_name">
                     </div>
                     <div class="form-group">
-                        <label for="message">How can we help?</label>
+                        <label for="message">How can I help?</label>
                         <textarea id="message" name="message" rows="4" style="width: 100%; padding: 1rem; border: 1px solid var(--color-highlight); border-radius: var(--radius-sm); background: var(--color-bg);"></textarea>
                     </div>
-                    <button type="submit" class="btn btn--primary btn--full">Request Strategy Call</button>
+                    <button type="submit" class="btn btn--primary btn--full">Request a call</button>
                 </form>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'core/js/carousel.js' %}" defer></script>
 {% endblock %}

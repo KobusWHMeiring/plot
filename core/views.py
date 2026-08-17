@@ -44,7 +44,7 @@ def submit_inquiry(request):
                 company_name=company_name,
                 message=message
             )
-            return HttpResponse('<div class="success-message">Thanks! We will be in touch soon.</div>')
+            return HttpResponse('<div class="success-message">Thanks! I\'ll be in touch soon.</div>')
         else:
             return HttpResponse('<div class="error-message">Please provide both name and email.</div>', status=400)
     
