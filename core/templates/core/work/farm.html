@@ -1,1 +1,114 @@
-<h1>Farm</h1>
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Farm — Plot{% endblock %}
+
+{% block content %}
+    <header class="work-hero">
+        <div class="container">
+            <span class="section-label">Case Study</span>
+            <h1 class="work-title font-serif">Farm</h1>
+            <p class="work-lede">Farm management for a regenerative farm.</p>
+            <p class="work-tagline">A regenerative farm's operational knowledge lived on paper lists, WhatsApp chats, and in people's memories — it didn't scale, couldn't calculate ecological or financial flows, and held institutional memory hostage. I built a local-first platform that logs the work, reconciles the money, and maps the land — on the farm's own hardware, offline where the signal dies.</p>
+            <p class="stack-line">Django 5.1 · Python · PostgreSQL · HTMX · Leaflet · Huey · Gemini OCR.</p>
+        </div>
+    </header>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">The problem</h2>
+            <p class="work-paragraph">Farm knowledge was scattered across paper, chats, and memory. It couldn't answer the questions that matter — did we make money, did we build soil, did we empower the community — and it lived in whoever happened to write the note.</p>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">The solution</h2>
+            <p class="work-paragraph">A "digital nervous system" for the farm: one place to log work, track animals and assets, reconcile money, and preserve knowledge. It tracks three forms of capital — financial, ecological, and social — rather than optimising for yield alone, and runs as an appliance on farm hardware rather than a SaaS dependency.</p>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">What it does</h2>
+            <div class="capabilities">
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">account_balance</span> Finance & reconciliation</h4>
+                    <p>A unified double-entry ledger with a ~40-account chart of accounts, bank-statement reconciliation with a learning suggestion engine, invoicing, a cashbook, and a finance dashboard that shows which farm enterprises are healthy.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">agriculture</span> Cattle movement & grazing</h4>
+                    <p>Rotational grazing tracked as moves between paddocks, with per-paddock rest periods (grazing / resting / ready) rendered as coloured map borders and the herd's pin auto-relocated.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">flight</span> Drone mapping</h4>
+                    <p>Georeferenced drone imagery processed client-side in the browser, rendered as map overlays, and auto-linked to grazing moves — tying aerial imagery to management decisions.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">view_kanban</span> Team todo, planner & routines</h4>
+                    <p>A Kanban board with prioritisation scoring, a week-ahead planner, and recurring "heartbeat" routines in active and passive modes — so daily friction stays low.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">map</span> Map & spatial model</h4>
+                    <p>A unified GeoJSON model for every mappable asset — points, fences, paddock polygons — with water infrastructure (tanks, pumps, outlets) drawn directly on the map.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">wifi_off</span> Offline rapid logger</h4>
+                    <p>A mobile PWA using IndexedDB, camera, and audio recording that survives Wi-Fi dead zones and syncs later — so field capture never blocks on signal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">In the field</h2>
+            <div class="case-screenshots">
+                <img class="case-screenshot" src="{% static 'core/img/farm/finance-dashboard.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/farm/finance-dashboard.svg' %}'" alt="Farm finance dashboard">
+                <img class="case-screenshot" src="{% static 'core/img/farm/map.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/farm/map.svg' %}'" alt="Farm map with paddock rest borders">
+                <img class="case-screenshot" src="{% static 'core/img/farm/kanban.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/farm/kanban.svg' %}'" alt="Farm team to-do Kanban board">
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">How it's built</h2>
+            <ul class="rigor-list">
+                <li><strong>Service-layer architecture</strong> — complex logic lives in ~60 service modules, not models or views; cross-service imports are lazy to avoid cycles.</li>
+                <li><strong>Performance discipline</strong> — "prefetch or perish": subquery annotations and query budgets tuned for a Raspberry Pi footprint.</li>
+                <li><strong>Testing at scale</strong> — ~456 Python tests, 8 Playwright end-to-end specs, and 48 UAT checklists.</li>
+                <li><strong>Architecture guard</strong> — a custom static-analysis linter holds the codebase at 0 errors.</li>
+                <li><strong>Local-first & white-label</strong> — an "appliance", not a SaaS dependency: it runs on farm hardware and is built so any regenerative farm can adopt the same software.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">Outcomes</h2>
+            <ul class="outcome-list">
+                <li>Live and in daily use on a working farm.</li>
+                <li>A production snapshot shows 56 active entities and a ~40-account chart of accounts.</li>
+                <li>81 open tasks, with 16 completed in the prior week (17.5 hours logged) — real daily adoption by the team.</li>
+                <li>Runs offline in field dead zones and on farm hardware.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="work-cta">
+        <div class="container">
+            <h2 class="section-title font-serif">Stack</h2>
+            <p class="stack-line">Django 5.1 · Python · PostgreSQL · HTMX · Leaflet · Huey · Gemini OCR — running on farm hardware.</p>
+            <div class="work-actions">
+                <a href="/#contact" class="btn btn--primary">Start a project</a>
+            </div>
+            <nav class="work-nav" aria-label="More case studies">
+                <span class="work-nav__label">More work</span>
+                {% for p in projects %}
+                    <a href="{% url 'work_detail' p.slug %}" class="btn btn--outline">{{ p.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </section>
+{% endblock %}

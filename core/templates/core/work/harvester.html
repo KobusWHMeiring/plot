@@ -1,1 +1,114 @@
-<h1>Harvester</h1>
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Harvester — Plot{% endblock %}
+
+{% block content %}
+    <header class="work-hero">
+        <div class="container">
+            <span class="section-label">Case Study</span>
+            <h1 class="work-title font-serif">Harvester</h1>
+            <p class="work-lede">The garden operating system for high-end landscape maintenance.</p>
+            <p class="work-tagline">A landscaping team's day lived on paper job cards — lost, wet, or stuck in the van — so billables leaked and clients were left in the dark. I built a platform that turns a photo of the paper form into verified, billable, client-ready data.</p>
+            <p class="stack-line">Django · Python · Celery + Redis · Gemini Vision · Leaflet · PostgreSQL.</p>
+        </div>
+    </header>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">The problem</h2>
+            <p class="work-paragraph">Field teams are experts at horticulture — and terrible at admin. Job cards get lost, wet, or sit in the van for days. Extra bags of compost and unexpected plantings never make it to the invoice. And high-net-worth clients want to know what happened in their garden, but WhatsApp messages get lost in the noise.</p>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">The solution</h2>
+            <p class="work-paragraph">Keep the paper — automate the data. Gardeners keep using the forms they know, snap one photo, and Vision AI reads the handwriting and digitizes it instantly. Zero training time for field staff, and a verified, billable record at the other end.</p>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">What it does</h2>
+            <div class="capabilities">
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">document_scanner</span> AI handwriting engine</h4>
+                    <p>Vision AI reads handwritten job cards — even the messy scrawl — and extracts inputs, plantings, and tasks into a structured, human-in-the-loop verification queue.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">mark_email_read</span> "Magic Link" client portal</h4>
+                    <p>A secure, time-bound link emailed after every visit. Clients see the summary, rate the visit, and request wishlist plants — no login required.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">analytics</span> Operational intelligence</h4>
+                    <p>Automatic nursery shopping lists aggregate every client request, and margin analysis shows exactly what inputs are used per site versus what's billed.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">calendar_today</span> Scheduling & calendar sync</h4>
+                    <p>A 14-day rolling sync with Google Calendar maps visits to team leaders and generates operational prep sheets for each crew.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">map</span> Spatial intelligence</h4>
+                    <p>Interactive Leaflet mapping of client locations, density clusters, and manual pin-drops for plots where geocoders fail.</p>
+                </div>
+                <div class="feature-row">
+                    <h4 class="feature-title font-serif"><span class="material-symbols-outlined">timeline</span> Crop lifecycle tracking</h4>
+                    <p>Biological data (days-to-maturity, harvest windows) projects the "active garden" state, with a 12-month Gantt view of growth and harvest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">In the field</h2>
+            <div class="case-screenshots">
+                <img class="case-screenshot" src="{% static 'core/img/harvester/verification-queue.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/harvester/verification-queue.svg' %}'" alt="Harvester verification queue — AI data against the original form">
+                <img class="case-screenshot" src="{% static 'core/img/harvester/client-portal.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/harvester/client-portal.svg' %}'" alt="Harvester client portal with visit summary and wishlist">
+                <img class="case-screenshot" src="{% static 'core/img/harvester/dashboard.png' %}" onerror="this.onerror=null;this.src='{% static 'core/img/harvester/dashboard.svg' %}'" alt="Harvester operational dashboard">
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="container">
+            <h2 class="section-title font-serif">How it's built</h2>
+            <ul class="rigor-list">
+                <li><strong>Service-layer pattern</strong> — complex logic lives in <code>services.py</code>; views stay thin.</li>
+                <li><strong>Performance first</strong> — <code>select_related</code>/<code>prefetch_related</code> throughout to avoid N+1 queries.</li>
+                <li><strong>Async by design</strong> — external calls (Gemini extraction, email) run in Celery tasks, never inside a web request.</li>
+                <li><strong>Schema-first</strong> — data model migrations are backwards-compatible; safe-enrichment migration patterns.</li>
+                <li><strong>Testing</strong> — integration tests cover the "golden flow" (upload → extract → verify → wishlist → shopping list).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="work-section work-section--alt">
+        <div class="container">
+            <h2 class="section-title font-serif">Outcomes</h2>
+            <ul class="outcome-list">
+                <li>In production use by a commercial garden-maintenance operation.</li>
+                <li>Replaced Monday-morning handwriting deciphering with a verified, billable data pipeline.</li>
+                <li>Closed the billing loop: extra inputs and unplanned plantings now reach the invoice.</li>
+            </ul>
+            <blockquote class="work-quote">"This system transformed our admin. We went from spending Mondays deciphering handwriting to spending Mondays planning high-value projects." — Ben, Urban Harvest</blockquote>
+        </div>
+    </section>
+
+    <section class="work-cta">
+        <div class="container">
+            <h2 class="section-title font-serif">Stack</h2>
+            <p class="stack-line">Django · Python · Celery + Redis · Gemini 2.5 Flash · Leaflet · PostgreSQL.</p>
+            <div class="work-actions">
+                <a href="/#contact" class="btn btn--primary">Start a project</a>
+            </div>
+            <nav class="work-nav" aria-label="More case studies">
+                <span class="work-nav__label">More work</span>
+                {% for p in projects %}
+                    <a href="{% url 'work_detail' p.slug %}" class="btn btn--outline">{{ p.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </section>
+{% endblock %}
