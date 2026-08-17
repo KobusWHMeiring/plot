@@ -9,7 +9,7 @@
             <span class="section-label">Case Study</span>
             <h1 class="work-title font-serif">Farm</h1>
             <p class="work-lede">Farm management for a regenerative farm.</p>
-            <p class="work-tagline">A regenerative farm's operational knowledge lived on paper lists, WhatsApp chats, and in people's memories — it didn't scale, couldn't calculate ecological or financial flows, and held institutional memory hostage. I built a local-first platform that logs the work, reconciles the money, and maps the land — on the farm's own hardware, offline where the signal dies.</p>
+            <p class="work-tagline">A regenerative farm's knowledge lived on paper lists, WhatsApp chats, and in people's memories — hard to find, hard to add up, and gone when the person who remembered left. I built a calm, local-first system that keeps track of the work, the money, and the land — offline, on the farm's own hardware.</p>
             <p class="stack-line">Django 5.1 · Python · PostgreSQL · HTMX · Leaflet · Huey · Gemini OCR.</p>
         </div>
     </header>
@@ -17,14 +17,14 @@
     <section class="work-section">
         <div class="container">
             <h2 class="section-title font-serif">The problem</h2>
-            <p class="work-paragraph">Farm knowledge was scattered across paper, chats, and memory. It couldn't answer the questions that matter — did we make money, did we build soil, did we empower the community — and it lived in whoever happened to write the note.</p>
+            <p class="work-paragraph">Farm knowledge was scattered across paper, chats, and memory. It couldn't answer the questions that matter — did we make money, did we build soil, did we empower the community — and it lived with whoever happened to write the note.</p>
         </div>
     </section>
 
     <section class="work-section work-section--alt">
         <div class="container">
             <h2 class="section-title font-serif">The solution</h2>
-            <p class="work-paragraph">A "digital nervous system" for the farm: one place to log work, track animals and assets, reconcile money, and preserve knowledge. It tracks three forms of capital — financial, ecological, and social — rather than optimising for yield alone, and runs as an appliance on farm hardware rather than a SaaS dependency.</p>
+            <p class="work-paragraph">One calm place to log the work, track the animals and assets, reconcile the money, and keep the knowledge safe. It looks after three forms of wealth — financial, ecological, and social — rather than chasing yield alone, and it runs quietly on the farm's own hardware.</p>
         </div>
     </section>
 
@@ -76,8 +76,8 @@
             <h2 class="section-title font-serif">How it's built</h2>
             <ul class="rigor-list">
                 <li><strong>Service-layer architecture</strong> — complex logic lives in ~60 service modules, not models or views; cross-service imports are lazy to avoid cycles.</li>
-                <li><strong>Performance discipline</strong> — "prefetch or perish": subquery annotations and query budgets tuned for a Raspberry Pi footprint.</li>
-                <li><strong>Testing at scale</strong> — ~456 Python tests, 8 Playwright end-to-end specs, and 48 UAT checklists.</li>
+                <li><strong>Performance-minded</strong> — subquery annotations and query budgets tuned for the modest hardware it runs on.</li>
+                <li><strong>A thorough test suite</strong> — ~456 Python tests, 8 Playwright end-to-end specs, and 48 UAT checklists.</li>
                 <li><strong>Architecture guard</strong> — a custom static-analysis linter holds the codebase at 0 errors.</li>
                 <li><strong>Local-first & white-label</strong> — an "appliance", not a SaaS dependency: it runs on farm hardware and is built so any regenerative farm can adopt the same software.</li>
             </ul>
@@ -89,8 +89,8 @@
             <h2 class="section-title font-serif">Outcomes</h2>
             <ul class="outcome-list">
                 <li>Live and in daily use on a working farm.</li>
-                <li>A production snapshot shows 56 active entities and a ~40-account chart of accounts.</li>
-                <li>81 open tasks, with 16 completed in the prior week (17.5 hours logged) — real daily adoption by the team.</li>
+                <li>A recent snapshot shows 56 active entities and a ~40-account chart of accounts.</li>
+                <li>81 open tasks, with 16 completed in the prior week (17.5 hours logged) — a team that's genuinely using it every day.</li>
                 <li>Runs offline in field dead zones and on farm hardware.</li>
             </ul>
         </div>
