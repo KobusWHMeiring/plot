@@ -57,7 +57,11 @@ No `chown` needed — everything runs as `carbonplanner`.
 
 ## 2. Configure Gunicorn (systemd)
 
-Create `/etc/systemd/system/plot.service`:
+Create the unit file (needs sudo to write into `/etc`):
+
+```bash
+sudo nano /etc/systemd/system/plot.service
+```
 
 ```ini
 [Unit]
@@ -81,7 +85,11 @@ sudo systemctl enable plot
 
 ## 3. Configure Nginx
 
-Create `/etc/nginx/sites-available/plot` (HTTP-only; certbot adds SSL next step):
+Create the site file (HTTP-only; certbot adds SSL next step):
+
+```bash
+sudo nano /etc/nginx/sites-available/plot
+```
 
 ```nginx
 server {
