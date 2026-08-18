@@ -1,50 +1,34 @@
 # Deployment Guide — Plot (plot.org.za)
 
-Target: Ubuntu 24.04 LTS, served at `https://plot.org.za` (and `www.plot.org.za`).
-Deploy user: `carbonplanner` (has sudo). App service user: `www-data`.
+Serves `https://plot.org.za` (and `www.plot.org.za`) from `vm670ifvm`, alongside
+the existing apps in `~/apps` (`garden`, `market`, `river`, `elands`, `homtini`).
 
-> **Why SSL is required, not optional:** with `DEBUG=False`, `harvester/settings.py`
-> forces `SECURE_SSL_REDIRECT=True`, `SESSION_COOKIE_SECURE=True`,
-> `CSRF_COOKIE_SECURE=True`, and HSTS. Over plain HTTP the admin can't log in and
-> the inquiry form fails CSRF. So the site **must** be served over HTTPS (step 5).
+This guide mirrors the proven `garden` pattern exactly:
+- code in `~/apps/plot`, gunicorn runs as `carbonplanner` (group `www-data`)
+- unix socket in the app dir, served by nginx behind certbot SSL
+
+> **SSL is required, not optional:** with `DEBUG=False`, `harvester/settings.py`
+> forces `SECURE_SSL_REDIRECT=True`, secure session/CSRF cookies, and HSTS. Plain
+> HTTP would break admin login and the inquiry form, so run step 5 (certbot).
 
 ## 0. Prerequisites
 
-- DNS: add an A record for the apex and `www` pointing at the server:
+- DNS is already done: `plot.org.za` and `www` → `169.239.182.221`.
+- Repo is public: `https://github.com/KobusWHMeiring/plot.git`.
+- Django 6.0 needs Python 3.12+ (Ubuntu 24.04 default — satisfied).
+- nginx + python3-venv are already installed (other apps run on this box).
 
-  ```
-  plot.org.za   A   169.239.182.221
-  www           A   169.239.182.221
-  ```
-
-  (`www` is currently a CNAME to the apex, which works too — an A record is just
-  more robust for the bare/`www` pair.)
-
-- The repo is public: `https://github.com/KobusWHMeiring/plot.git`.
-- Django 6.0 requires Python 3.12+ — Ubuntu 24.04 ships 3.12, so no extra work.
-
-## 1. System preparation
+## 1. Application setup
 
 ```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y python3-pip python3-venv nginx git
-```
+mkdir -p ~/apps/plot
+git clone https://github.com/KobusWHMeiring/plot.git ~/apps/plot
+cd ~/apps/plot
 
-## 2. Application setup
-
-```bash
-# Create a place to clone into
-sudo mkdir -p /var/www
-sudo chown carbonplanner:carbonplanner /var/www
-
-# Clone and set up the app
-git clone https://github.com/KobusWHMeiring/plot.git /var/www/plot
-cd /var/www/plot
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Configure environment
 cp .env.example .env
 
 # Generate a real secret key
@@ -53,7 +37,7 @@ python -c "from django.core.management.utils import get_random_secret_key; print
 nano .env
 ```
 
-`.env` should look like:
+`.env`:
 
 ```
 DEBUG=False
@@ -62,40 +46,29 @@ ALLOWED_HOSTS=plot.org.za,www.plot.org.za,169.239.182.221
 DATABASE_URL=sqlite:///db.sqlite3
 ```
 
-Then initialise the database and static files:
+Initialise DB and static files:
 
 ```bash
 python manage.py migrate
 python manage.py collectstatic --noinput
-
-# Hand everything to the service user (gunicorn runs as www-data and must be
-# able to write the SQLite database and read the code/static files)
-sudo chown -R www-data:www-data /var/www/plot
 ```
 
-## 3. Configure Gunicorn (systemd)
+No `chown` needed — everything runs as `carbonplanner`.
+
+## 2. Configure Gunicorn (systemd)
 
 Create `/etc/systemd/system/plot.service`:
 
 ```ini
 [Unit]
-Description=Gunicorn instance to serve Plot
+Description=Gunicorn daemon for Plot
 After=network.target
 
 [Service]
-User=www-data
+User=carbonplanner
 Group=www-data
-WorkingDirectory=/var/www/plot
-Environment="PATH=/var/www/plot/venv/bin"
-ExecStart=/var/www/plot/venv/bin/gunicorn \
-    --access-logfile - \
-    --workers 3 \
-    --bind unix:/run/plot/plot.sock \
-    harvester.wsgi:application
-
-# Creates /run/plot owned by the service user so gunicorn can bind the socket
-RuntimeDirectory=plot
-
+WorkingDirectory=/home/carbonplanner/apps/plot
+ExecStart=/home/carbonplanner/apps/plot/venv/bin/gunicorn --workers 3 --bind unix:/home/carbonplanner/apps/plot/plot.sock harvester.wsgi:application
 [Install]
 WantedBy=multi-user.target
 ```
@@ -106,69 +79,69 @@ sudo systemctl start plot
 sudo systemctl enable plot
 ```
 
-## 4. Configure Nginx
+## 3. Configure Nginx
 
-Create `/etc/nginx/sites-available/plot`:
+Create `/etc/nginx/sites-available/plot` (HTTP-only; certbot adds SSL next step):
 
 ```nginx
 server {
-    listen 80;
-    server_name plot.org.za www.plot.org.za 169.239.182.221;
+    server_name plot.org.za www.plot.org.za;
 
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location /static/ {
-        alias /var/www/plot/staticfiles/;
+        alias /home/carbonplanner/apps/plot/staticfiles/;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/plot/plot.sock;
+        proxy_pass http://unix:/home/carbonplanner/apps/plot/plot.sock;
     }
+
+    listen 80;
 }
 ```
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/plot /etc/nginx/sites-enabled/plot
-# Remove the default site if it's still there
-sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
-sudo systemctl restart nginx
+sudo systemctl reload nginx
 ```
 
-## 5. SSL (required)
+Do **not** remove `sites-enabled/default` — it isn't enabled anyway, and the other
+sites each have their own `server_name` block.
+
+## 4. SSL (required)
 
 ```bash
-sudo apt install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d plot.org.za -d www.plot.org.za
 ```
 
-certbot rewrites the Nginx config to redirect HTTP → HTTPS and adds the cert.
-Django's own `SECURE_SSL_REDIRECT` and `SECURE_PROXY_SSL_HEADER` already line up
-with Nginx's `X-Forwarded-Proto` header, so everything works end-to-end.
+certbot rewrites `plot` into the standard 443 + `listen 80` → 301 redirect pair,
+exactly like `garden`. There is no wildcard cert on this box, so this adds a
+dedicated `plot.org.za` cert without touching the others.
 
-Verify: `curl -I https://plot.org.za` should return `200` (or a redirect to a
-known route).
+Verify: `curl -I https://plot.org.za`.
 
-## 6. Deploying updates
-
-On the server, as `carbonplanner`:
+## 5. Deploying updates
 
 ```bash
-cd /var/www/plot
-sudo -u www-data git pull
-sudo -u www-data venv/bin/pip install -r requirements.txt
-sudo -u www-data venv/bin/python manage.py migrate
-sudo -u www-data venv/bin/python manage.py collectstatic --noinput
+cd ~/apps/plot
+git pull
+venv/bin/pip install -r requirements.txt
+venv/bin/python manage.py migrate
+venv/bin/python manage.py collectstatic --noinput
 sudo systemctl restart plot
 ```
 
 ## Notes / gotchas
 
 - **Static files live in `staticfiles/`** (Django's `STATIC_ROOT`), not `static/`.
-  The Nginx `alias` above points at `staticfiles/`; the old guide's `root /var/www/plot`
-  for `/static/` was wrong and would 404.
-- **The socket is `/run/plot/plot.sock`**, created via `RuntimeDirectory=plot`.
-  Binding directly to `/run/plot.sock` fails because `www-data` can't write to `/run`.
-- **SQLite is a single file.** Keep a backup strategy in mind (e.g. copy
-  `/var/www/plot/db.sqlite3` off-box) — the inquiry data lives there.
+- **Socket is `/home/carbonplanner/apps/plot/plot.sock`**, created by gunicorn
+  (default umask → world-connectable), so nginx (`www-data`) can reach it — same
+  mechanism as `garden.sock`.
+- **Don't name the unit `gunicorn.service`** — a failed unit with that name
+  already exists on the box. Use `plot.service`.
+- **SQLite is a single file** at `~/apps/plot/db.sqlite3`; back it up if inquiry
+  data matters (there's a `market_worker` Celery pattern on this box if you ever
+  want to move off SQLite, but that's out of scope here).
